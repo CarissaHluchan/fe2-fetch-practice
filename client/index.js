@@ -3,11 +3,53 @@ console.log('so fetch!')
 // GET Lesson:
 
 // 1. Make a GET request on page load to get all of the users for a given resource, and log those items to the console.
+// http://localhost:3001/api/v1/users
+//fetch("http://localhost:3001/api/v1/users") // give me a promise...
+//THEN >>>> when the promise resolves...get the response and json it..
+//    .then(response => response.json()) // returns the json's resp. as a PROMISE
+// when that promise resolves..THEN.. I have the data and I can console log it
+//    .then(data => console.log('data', data))
+
+// NOTE: the “response.json()” MUST be returned in the first .then() either IMPLICITLY 
+// (one line arrow function) or EXPLICITLY (with return keyword) 
+
+
+
 // 2. Make a GET request on page load  to get all of the sports items for a given resource, and log those items to the console.
 
 // Let's hook it up to the DOM!
+
+
+
 // 3. When the user clicks the "Log animals!" button, make a GET request to get all of the animals, and log them to the console.
-// 4. 🌶 On page load, GET all users and populate the section (.js-collection) with that information. We should see a <p> element for each user that contains text about that user. For example, "Travis Rollins is online and enjoys music, software, and gaming."
+
+//pusedocode:
+// I need to query the button
+// add eventListener for when someone clicks the button
+// build a funtion to put in the event Listeners so that when they click the button, the function fires...
+// the function should just GET/FETCH the animal and console log them...
+
+let logAnimalsButton = document.querySelector(".js.log-animals")
+
+logAnimalsButton.addEventListener("click", fetchAnimals)
+
+function fetchAnimals() {
+    //f etch
+    fetch("http://localhost:3001/api/v1/animals")
+        .then(response => response.json())
+        .then(data => {
+            console.log('animals: ', data)
+            data.forEach(animal => {
+                animalsSection.innerHTML += `<p>${animal.name}</p>`
+            })
+        })
+        .catch(error => console.log(error));
+}
+
+
+
+// 4. 🌶 On page load, GET all users and populate the section (.js-collection) with that information.
+// We should see a <p> element for each user that contains text about that user. For example, "Travis Rollins is online and enjoys music, software, and gaming."
 
 
 
