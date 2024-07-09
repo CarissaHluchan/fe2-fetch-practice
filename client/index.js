@@ -29,7 +29,8 @@ console.log('so fetch!')
 // build a funtion to put in the event Listeners so that when they click the button, the function fires...
 // the function should just GET/FETCH the animal and console log them...
 
-let logAnimalsButton = document.querySelector(".js.log-animals")
+let logAnimalsButton = document.querySelector(".js-log-animals")
+let animalsSection = document.querySelector(".js-collection")
 
 logAnimalsButton.addEventListener("click", fetchAnimals)
 
@@ -43,10 +44,10 @@ function fetchAnimals() {
                 animalsSection.innerHTML += `<p>${animal.name}</p>`
             })
         })
-        .catch(error => console.log(error));
+        .catch(error => console.log('the error', error));
 }
 
-
+//PROMISE.ALL()
 
 // 4. 🌶 On page load, GET all users and populate the section (.js-collection) with that information.
 // We should see a <p> element for each user that contains text about that user. For example, "Travis Rollins is online and enjoys music, software, and gaming."
