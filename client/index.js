@@ -15,10 +15,29 @@ console.log('so fetch!')
 
 
 
-// 2. Make a GET request on page load  to get all of the sports items for a given resource, and log those items to the console.
-
+// 2. Make a GET request on page load  to get all of the sports 
+// items for a given resource, and log those items to the console.
+    // fetch("http://localhost:3001/api/v1/sport-teams")
+    //     .then(response => response.json()) 
+    //     .then(data => console.log('data', data))
 // Let's hook it up to the DOM!
 
+var logSportsTeams = document.querySelector(".js-log-sports-teams")
+var sportTeamSection = document.querySelector("js-collectionST")
+
+logSportsTeams.addEventListener("click", fetchSportsTeams)
+
+function fetchSportsTeams() {
+    fetch("http://localhost:3001/api/v1/sport-teams")
+    .then(response => response.json())
+    .then(data => {
+        console.log('sports teams: ', data)
+        data.forEach(sportTeam => {
+                sportTeamSection.innerHTML += `<p>${sportTeam.name}</p>`
+            })
+        })
+        .catch(error => console.log('the error', error));
+}
 
 
 // 3. When the user clicks the "Log animals!" button, make a GET request to get all of the animals, and log them to the console.
@@ -29,7 +48,7 @@ console.log('so fetch!')
 // build a funtion to put in the event Listeners so that when they click the button, the function fires...
 // the function should just GET/FETCH the animal and console log them...
 
-let logAnimalsButton = document.querySelector(".js-log-animals")
+var logAnimalsButton = document.querySelector(".js-log-animals")
 let animalsSection = document.querySelector(".js-collection")
 
 logAnimalsButton.addEventListener("click", fetchAnimals)
